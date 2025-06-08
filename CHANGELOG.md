@@ -4,7 +4,7 @@ All notable changes to this project will be documented here.
 
 ---
 
-## \[v2.1.0] - 2025-06-10
+## \[v2.1.0] - 2025-06-09
 
 ### 🎯 Functional Updates
 
