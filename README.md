@@ -1,5 +1,10 @@
 # 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
 
+## 📋 Changelog
+
+See the full changelog [here](./CHANGELOG.md).
+
+
 A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool), now with a full UI, cooldown tracking, hotkeys, and quality-of-life improvements.
 
 ---
