@@ -5,8 +5,6 @@ A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://git
 ---
 
 ## 📸 Screenshot
-
-*(Bạn có thể thêm ảnh screenshot ở đây nếu muốn)*  
 ![image](https://github.com/user-attachments/assets/c073794c-4e04-461e-9ad5-f17c87ef0eb3)
 
 
