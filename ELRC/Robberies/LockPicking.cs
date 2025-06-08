@@ -12,18 +12,6 @@ public class LockPicking
     private const int whiteThr = 120;       // ngưỡng “trắng”
     private const int postClickWait = 85;        // ms nghỉ sau click
 
-    /* ------------- helper ------------- */
-    private static void SpamClickToFail(int x, int y)
-    {
-        Logger.WriteLine("i ~ Spamming clicks to fail minigame...");
-        for (int i = 0; i < SpamClickCount; i++)
-        {
-            Mouse.SetMousePos(x, y);
-            Mouse.LeftClick();
-            Thread.Sleep(50);
-        }
-        Logger.WriteLine("i ~ Spam complete, minigame should fail now!");
-    }
 
     private static bool IsWhite(Color c) =>
         c.R > whiteThr && c.G > whiteThr && c.B > whiteThr;
@@ -32,35 +20,28 @@ public class LockPicking
     {
         while (true)
         {
-            if (Program.ShouldStop())
-            {
-                SpamClickToFail(x, lineY);
-                return false;
-            }
+            if (Program.ShouldStop()) return false;
 
-            bool hit = false;
             foreach (int dy in yOffsets)
             {
                 Color pix = Screen.GetColorAtPixelFast(x + 5, lineY + dy);
-                if (IsWhite(pix)) { hit = true; break; }
+                if (IsWhite(pix))
+                {
+                    Mouse.LeftClick();
+                    Logger.WriteLine($"i ~ Clicked bar {barIdx}");
+                    Thread.Sleep(postClickWait);
+                    return true;
+                }
             }
-
-            if (hit)
-            {
-                Mouse.LeftClick();
-                Logger.WriteLine($"i ~ Clicked bar {barIdx}");
-                Thread.Sleep(postClickWait);
-                return true;
-            }
-
-            Thread.Sleep(1);          // poll ~1 kHz
+            
+            Thread.Sleep(1); // poll ~1 kHz
         }
     }
+
 
     /* ------------- main ------------- */
     public static void StartProcess()
     {
-        
         Logger.WriteLine($"i ~ Starting process in {StartTime}");
         Roblox.FocusRoblox();
         Thread.Sleep(StartTime * 5000);
@@ -82,6 +63,8 @@ public class LockPicking
             if (!WaitAndClick(bar, x, lineY)) return;   // dừng nếu Ctrl+C
         }
 
-        Logger.WriteLine("i ~ Robbing Finished!");
+        // Thêm vào cuối StartProcess
+        Screen.ReleaseDC();
+        Logger.WriteLine("i ~ Robbing Finished and DC released!");
     }
 }

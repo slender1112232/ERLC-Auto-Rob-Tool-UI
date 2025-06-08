@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading;
 
 namespace ELRCRobTool.Robberies
@@ -33,10 +33,11 @@ namespace ELRCRobTool.Robberies
             bool wasSquareFound = false;
             int findingAttempts = 0;
             int oldX = 0, oldY = 0;
+            bool isMinigameDone = false;
 
             try
             {
-                while (true)
+                while (!isMinigameDone)
                 {
                     if (!Roblox.IsRobloxFocused())
                     {
@@ -64,10 +65,11 @@ namespace ELRCRobTool.Robberies
                     if (x == 0 && y == 0)
                     {
                         wasSquareFound = false;
-                        if (++findingAttempts > 25)
+                        if (++findingAttempts > 10)
                         {
-                            Logger.WriteLine("i ~ Robbing Finished / Could not find green square!");
-                            break;
+                            isMinigameDone = true;
+                            
+                            Logger.WriteLine("i ~ Could not find square after 25 attempts, minigame done.");
                         }
                     }
                     else
@@ -92,9 +94,12 @@ namespace ELRCRobTool.Robberies
             }
             finally
             {
-                Mouse.SetMousePos(Screen.ScreenWidth / 2, Screen.ScreenHeight / 2);
-                Logger.WriteLine("i ~ GlassCutting stopped, mouse focus released.");
+                Mouse.SetMousePos(Screen.ScreenWidth / 2, Screen.ScreenHeight / 2); // Đặt chuột về giữa
+                Thread.Sleep(100); // Đợi ổn định
+                
+                Logger.WriteLine("i ~ GlassCutting stopped, mouse fixed at center and DC released!");
             }
+            Screen.ReleaseDC(); // Giải phóng DC
         }
     }
 }

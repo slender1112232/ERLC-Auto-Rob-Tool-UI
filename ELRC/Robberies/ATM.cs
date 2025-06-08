@@ -105,7 +105,7 @@ public class ATM
             Logger.WriteLine("i ~ Switching to new color in 0.5 s...");
             Thread.Sleep(500);
         }
-
-        Logger.WriteLine("i ~ Robbing Finished!");
+        Screen.ReleaseDC();
+        Logger.WriteLine("i ~ Robbing Finished and DC released!");
     }
 }

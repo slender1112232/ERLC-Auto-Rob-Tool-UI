@@ -1,4 +1,4 @@
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -19,9 +19,6 @@ namespace ELRCRobTool
         static extern IntPtr GetDC(IntPtr hwnd);
 
         [DllImport("user32.dll")]
-        static extern IntPtr GetDesktopWindow();
-
-        [DllImport("user32.dll")]
         static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);
 
         [DllImport("gdi32.dll", EntryPoint = "GetDeviceCaps")]
@@ -30,26 +27,34 @@ namespace ELRCRobTool
         [DllImport("gdi32.dll")]
         static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
 
-        // Reuse DC
-        private static readonly IntPtr SharedDC;
+        // Biến DC không còn static cố định, sẽ được lấy mới mỗi lần cần
+        private static IntPtr _currentDC = IntPtr.Zero;
 
-        static Screen()
+        // Lấy DC mới trước khi sử dụng
+        private static void EnsureDC()
         {
-            SharedDC = GetDC(IntPtr.Zero);
-            IntPtr desktopDc = SharedDC;
-
-            ScreenWidth = GetDeviceCaps(desktopDc, DesktopHorzres);
-            ScreenHeight = GetDeviceCaps(desktopDc, DesktopVertres);
-
-            AppDomain.CurrentDomain.ProcessExit += (_, __) =>
+            if (_currentDC == IntPtr.Zero)
             {
-                if (SharedDC != IntPtr.Zero)
-                    ReleaseDC(IntPtr.Zero, SharedDC);
-            };
+                _currentDC = GetDC(IntPtr.Zero);
+                ScreenWidth = GetDeviceCaps(_currentDC, DesktopHorzres);
+                ScreenHeight = GetDeviceCaps(_currentDC, DesktopVertres);
+                Logger.WriteLine("i ~ New DC acquired.");
+            }
+        }
+        public static void ReleaseDC()
+        {
+            if (_currentDC != IntPtr.Zero)
+            {
+                Logger.WriteLine("i ~ Releasing DC...");
+                ReleaseDC(IntPtr.Zero, _currentDC);
+                _currentDC = IntPtr.Zero;
+                Logger.WriteLine("i ~ DC released.");
+            }
         }
 
         public static Bitmap TakeScreenshot()
         {
+            EnsureDC();
             Bitmap nBitmap = new Bitmap(ScreenWidth, ScreenHeight);
             Graphics.FromImage(nBitmap).CopyFromScreen(0, 0, 0, 0, nBitmap.Size);
             return nBitmap;
@@ -57,6 +62,7 @@ namespace ELRCRobTool
 
         public static Bitmap TakeScreenshot(int fromX, int toX, int fromY, int toY)
         {
+            EnsureDC();
             int width = toX - fromX;
             int height = toY - fromY;
             Bitmap bitmap = new Bitmap(width, height);
@@ -69,6 +75,7 @@ namespace ELRCRobTool
 
         public static (int, int) LocateColor(Color color, int tolerance = 0)
         {
+            EnsureDC();
             using (Bitmap screen = TakeScreenshot(0, ScreenWidth, 0, ScreenHeight))
             {
                 BitmapData data = screen.LockBits(new Rectangle(0, 0, screen.Width, screen.Height),
@@ -106,6 +113,7 @@ namespace ELRCRobTool
 
         public static (int, int) FindColorInArea(Color color1, Color color2, int tolerance, int fromX, int toX, int fromY, int toY)
         {
+            EnsureDC();
             using (Bitmap screen = TakeScreenshot(fromX, toX, fromY, toY))
             {
                 BitmapData data = screen.LockBits(new Rectangle(0, 0, screen.Width, screen.Height),
@@ -145,7 +153,8 @@ namespace ELRCRobTool
 
         public static Color GetColorAtPixelFast(int x, int y)
         {
-            uint pixel = GetPixel(SharedDC, x, y);
+            EnsureDC();
+            uint pixel = GetPixel(_currentDC, x, y);
             return Color.FromArgb(255,
                 (int)(pixel & 0xFF),
                 (int)((pixel >> 8) & 0xFF),

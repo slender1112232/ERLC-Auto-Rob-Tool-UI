@@ -20,10 +20,10 @@ namespace ELRCRobTool
             public DispatcherTimer Timer { get; set; } = null!;
             public int RemainingSeconds { get; set; }
             public TextBlock Display { get; set; } = null!;
-            public string InitialText { get; set; } = null!; // Lưu văn bản ban đầu
+            public string InitialText { get; set; } = null!;
         }
 
-        private readonly Dictionary<string, CooldownInfo> _cooldowns = new Dictionary<string, CooldownInfo>();
+        private readonly Dictionary<string, CooldownInfo> _cooldowns = new();
 
         public MainWindow()
         {
@@ -32,270 +32,184 @@ namespace ELRCRobTool
             CheckRoblox();
             SetupCooldowns();
 
-            // Thêm sự kiện KeyDown để xử lý hotkey
             KeyDown += MainWindow_KeyDown;
 
-            // Đăng ký event từ Logger để cập nhật LogTextBox
-            Logger.OnLogMessage += message =>
+            Logger.OnLogMessage += m => Dispatcher.Invoke(() =>
             {
-                Dispatcher.Invoke(() =>
-                {
-                    LogTextBox.AppendText(message + "\n");
-                    LogTextBox.ScrollToEnd();
-                });
-            };
-        }
-
-        public string SystemScaleMultiplier => Screen.SystemScaleMultiplier.ToString("F2");
-
-        private void CheckRoblox()
-        {
-            if (!Roblox.IsRobloxRunning())
-            {
-                AppendLog("Waiting for Roblox to open...");
-                Task.Run(async () =>
-                {
-                    while (!Roblox.IsRobloxRunning())
-                    {
-                        await Task.Delay(500);
-                    }
-                    Dispatcher.Invoke(() => AppendLog("Roblox is running!"));
-                });
-            }
-        }
-
-        private void SetupCooldowns()
-        {
-            _cooldowns["AutoATM"] = new CooldownInfo { Display = AutoATMCooldown };
-            _cooldowns["RobBank"] = new CooldownInfo { Display = RobBankCooldown };
-            _cooldowns["GlassCutting"] = new CooldownInfo { Display = GlassCuttingCooldown };
-            _cooldowns["LockPick"] = new CooldownInfo { Display = LockPickCooldown };
-
-
-            foreach (var cooldown in _cooldowns.Values)
-            {
-                cooldown.Timer = new DispatcherTimer
-                {
-                    Interval = TimeSpan.FromSeconds(1)
-                };
-                cooldown.Timer.Tick += (s, e) =>
-                {
-                    if (cooldown.RemainingSeconds > 0)
-                    {
-                        cooldown.RemainingSeconds--;
-                        Dispatcher.Invoke(() =>
-                        {
-                            cooldown.Display.Text = $"Wait {cooldown.RemainingSeconds}s";
-                            cooldown.Display.Background = new SolidColorBrush(Colors.Red);
-                            cooldown.Display.Foreground = new SolidColorBrush(Colors.White);
-                        });
-                    }
-                    else
-                    {
-                        cooldown.Timer.Stop();
-                        Dispatcher.Invoke(() =>
-                        {
-                            cooldown.Display.Text = cooldown.InitialText; // Khôi phục văn bản ban đầu
-                            cooldown.Display.Background = new SolidColorBrush(Colors.LightGreen);
-                            cooldown.Display.Foreground = new SolidColorBrush(Colors.Black);
-                            string actionName = _cooldowns.FirstOrDefault(x => x.Value == cooldown).Key;
-                            PlaySound(actionName);
-                        });
-                    }
-                };
-            }
-
-            Dispatcher.Invoke(() =>
-            {
-                foreach (var cooldown in _cooldowns)
-                {
-                    // Lưu văn bản ban đầu và hiển thị nó
-                    cooldown.Value.InitialText = $"{cooldown.Key}: Ready";
-                    cooldown.Value.Display.Text = cooldown.Value.InitialText;
-                    cooldown.Value.Display.Background = new SolidColorBrush(Colors.LightGreen);
-                    cooldown.Value.Display.Foreground = new SolidColorBrush(Colors.Black);
-                }
+                LogTextBox.AppendText(m + "\n");
+                LogTextBox.ScrollToEnd();
             });
         }
 
-        private void StartAction(Action action, string actionName, int cooldownSeconds = 0, TextBlock? cooldownDisplay = null)
+        /* ─────────────────────────── Utility ─────────────────────────── */
+        public string SystemScaleMultiplier => Screen.SystemScaleMultiplier.ToString("F2");
+
+        private void AppendLog(string msg) => Logger.WriteLine(msg);
+
+        private void CheckRoblox()
         {
-            if (cooldownDisplay != null && _cooldowns.TryGetValue(actionName, out var cooldown) && cooldown.Timer.IsEnabled)
+            if (Roblox.IsRobloxRunning()) return;
+            AppendLog("Waiting for Roblox to open...");
+            Task.Run(async () =>
             {
-                Dispatcher.Invoke(() =>
-                {
-                    cooldownDisplay.Text = $"Wait {cooldown.RemainingSeconds}s";
-                    cooldownDisplay.Background = new SolidColorBrush(Colors.Red);
-                    cooldownDisplay.Foreground = new SolidColorBrush(Colors.White);
-                });
-                return;
+                while (!Roblox.IsRobloxRunning()) await Task.Delay(500);
+                Dispatcher.Invoke(() => AppendLog("Roblox is running!"));
+            });
+        }
+
+        /* ─────────────────────────── Cooldowns ─────────────────────────── */
+        private void SetupCooldowns()
+        {
+            _cooldowns["AutoATM"] = new() { Display = AutoATMCooldown };
+            _cooldowns["RobBank"] = new() { Display = RobBankCooldown };
+            _cooldowns["GlassCutting"] = new() { Display = GlassCuttingCooldown };
+            _cooldowns["LockPick"] = new() { Display = LockPickCooldown };
+
+            foreach (var cd in _cooldowns.Values)
+            {
+                cd.Timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+                cd.Timer.Tick += (_, _) => UpdateCooldownTick(cd);
             }
 
-            if (actionName != "GlassCutting")
+            foreach (var kv in _cooldowns)
             {
-                Program.SetStopAction(false);
+                kv.Value.InitialText = $"{kv.Key}: Ready";
+                ResetDisplay(kv.Value);
             }
+        }
+
+        private void UpdateCooldownTick(CooldownInfo cd)
+        {
+            if (cd.RemainingSeconds > 0)
+            {
+                cd.RemainingSeconds--;
+                cd.Display.Text = $"Wait {cd.RemainingSeconds}s";
+                cd.Display.Background = Brushes.Red;
+                cd.Display.Foreground = Brushes.White;
+            }
+            else
+            {
+                cd.Timer.Stop();
+                ResetDisplay(cd);
+                string name = _cooldowns.FirstOrDefault(x => x.Value == cd).Key;
+                PlaySound(name);
+            }
+        }
+
+        private static void ResetDisplay(CooldownInfo cd)
+        {
+            cd.Display.Text = cd.InitialText;
+            cd.Display.Background = Brushes.LightGreen;
+            cd.Display.Foreground = Brushes.Black;
+        }
+
+        private void StartCooldown(string name, int seconds, TextBlock display)
+        {
+            if (!_cooldowns.TryGetValue(name, out var cd)) return;
+            cd.Timer.Stop();
+            cd.RemainingSeconds = seconds;
+            display.Text = $"Wait {cd.RemainingSeconds}s";
+            display.Background = Brushes.Red;
+            display.Foreground = Brushes.White;
+            cd.Timer.Start();
+        }
+
+        /* ─────────────────────────── StartAction core ─────────────────────────── */
+        private void StartAction(Action action, string name, int cdSeconds = 0, TextBlock? cdDisplay = null)
+        {
+            // ➜ Không block khi cooldown chạy, nhưng reset countdown về lại sau khi action kết thúc.
+            if (cdDisplay != null && _cooldowns.TryGetValue(name, out var cdRunning) && cdRunning.Timer.IsEnabled)
+            {
+                // thông báo nhưng vẫn cho chạy tiếp
+                cdRunning.Timer.Stop(); // dừng đếm hiện tại để reset sau
+                cdRunning.RemainingSeconds = 0;
+                cdDisplay.Text = "Running...";
+                cdDisplay.Background = Brushes.Orange;
+                cdDisplay.Foreground = Brushes.Black;
+            }
+
+            if (name != "GlassCutting") Program.SetStopAction(false);
 
             Task.Run(() =>
             {
                 try
                 {
-                    action();
-                    Dispatcher.Invoke(() =>
+                    if (!Roblox.IsRobloxRunning())
                     {
-                        AppendLog($"{actionName} completed.");
-                        if (cooldownSeconds > 0 && cooldownDisplay != null)
-                        {
-                            StartCooldown(actionName, cooldownSeconds, cooldownDisplay);
-                        }
-                    });
+                        Dispatcher.Invoke(() => AppendLog("! ~ Roblox is not running."));
+                        return;
+                    }
+                    action();
+                    Dispatcher.Invoke(() => AppendLog($"{name} completed."));
                 }
                 catch (Exception ex)
                 {
                     Dispatcher.Invoke(() => AppendLog($"Error: {ex.Message}"));
                 }
+                finally
+                {
+                    Program.SetStopAction(false);
+                    if (cdSeconds > 0 && cdDisplay != null)
+                        Dispatcher.Invoke(() => StartCooldown(name, cdSeconds, cdDisplay));
+                }
             });
         }
 
-        private void AppendLog(string message)
-        {
-            Logger.WriteLine(message);
-        }
+        /* ─────────────────────────── Button handlers ─────────────────────────── */
+        private void LockPick_Click(object s, RoutedEventArgs e) => StartAction(() => LockPicking.StartProcess(), "LockPick", 240, LockPickCooldown);
+        private void GlassCutting_Click(object s, RoutedEventArgs e) => StartAction(() => GlassCutting.StartProcess(), "GlassCutting", 15, GlassCuttingCooldown);
+        private void AutoATM_Click(object s, RoutedEventArgs e) => StartAction(() => ATM.StartProcess(), "AutoATM", 360, AutoATMCooldown);
+        private void Crowbar_Click(object s, RoutedEventArgs e) => StartAction(() => Crowbar.StartProcess(), "Crowbar");
+        private void RobBank_Click(object s, RoutedEventArgs e) => StartAction(() => AppendLog("Robbing Bank (simulated)..."), "RobBank", 360, RobBankCooldown);
 
-        private void LockPick_Click(object sender, RoutedEventArgs e)
-        {
-            StartAction(() => LockPicking.StartProcess(), "LockPick", 240, LockPickCooldown);
+        /* ─────────────────────────── Misc handlers ─────────────────────────── */
+        private void Stop_Click(object s, RoutedEventArgs e) { Program.SetStopAction(true); AppendLog("Stopping current action..."); }
+        private void Exit_Click(object s, RoutedEventArgs e) => Application.Current.Shutdown();
 
-        }
+        private void Hyperlink_RequestNavigate(object s, RequestNavigateEventArgs e)
+        { Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true }); e.Handled = true; }
 
-        private void GlassCutting_Click(object sender, RoutedEventArgs e)
+        private void ResetCooldown_Click(object s, RoutedEventArgs e)
         {
-            StartAction(() => GlassCutting.StartProcess(), "GlassCutting", 15, GlassCuttingCooldown);
-        }
-
-        private void AutoATM_Click(object sender, RoutedEventArgs e)
-        {
-            StartAction(() => ATM.StartProcess(), "AutoATM", 360, AutoATMCooldown);
-        }
-
-        private void Crowbar_Click(object sender, RoutedEventArgs e)
-        {
-            StartAction(() => Crowbar.StartProcess(), "Crowbar");
-        }
-
-        private void RobBank_Click(object sender, RoutedEventArgs e)
-        {
-            StartAction(() =>
+            foreach (var kv in _cooldowns)
             {
-                Dispatcher.Invoke(() => AppendLog("Robbing Bank (simulated action)..."));
-            }, "RobBank", 240, RobBankCooldown);
+                kv.Value.Timer.Stop();
+                kv.Value.RemainingSeconds = 0;
+                ResetDisplay(kv.Value);
+            }
+            AppendLog("All cooldowns reset.");
         }
 
-        private void Stop_Click(object sender, RoutedEventArgs e)
+        /* ─────────────────────────── Key bindings ─────────────────────────── */
+        private void MainWindow_KeyDown(object s, System.Windows.Input.KeyEventArgs e)
         {
-            Program.SetStopAction(true);
-            AppendLog("Stopping current action...");
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
-            e.Handled = true;
-        }
-
-        private void StartCooldown(string actionName, int seconds, TextBlock cooldownDisplay)
-        {
-            if (_cooldowns.TryGetValue(actionName, out var cooldown))
+            switch (e.Key)
             {
-                cooldown.RemainingSeconds = seconds;
-                Dispatcher.Invoke(() =>
-                {
-                    cooldownDisplay.Text = $"Wait {cooldown.RemainingSeconds}s";
-                    cooldownDisplay.Background = new SolidColorBrush(Colors.Red);
-                    cooldownDisplay.Foreground = new SolidColorBrush(Colors.White);
-                });
-                if (cooldown.RemainingSeconds > 0)
-                {
-                    cooldown.Timer.Start();
-                }
+                case System.Windows.Input.Key.D1: LockPick_Click(s, new()); break;
+                case System.Windows.Input.Key.D2: GlassCutting_Click(s, new()); break;
+                case System.Windows.Input.Key.D3: AutoATM_Click(s, new()); break;
+                case System.Windows.Input.Key.D4: Crowbar_Click(s, new()); break;
+                case System.Windows.Input.Key.D5: RobBank_Click(s, new()); break;
+                case System.Windows.Input.Key.Escape: Exit_Click(s, new()); break;
             }
         }
 
-        private void PlaySound(string actionName)
+        /* ─────────────────────────── Sound ─────────────────────────── */
+        private void PlaySound(string action)
         {
-            string soundFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", actionName switch
+            string path = action switch
             {
                 "RobBank" => "Banks.wav",
                 "AutoATM" => "ATM.wav",
                 "GlassCutting" => "GlassCutting.wav",
                 "LockPick" => "LockPick.wav",
                 _ => "Default.wav"
-            });
-            try
-            {
-                using (var player = new SoundPlayer(soundFile))
-                {
-                    player.Play();
-                }
-            }
-            catch (Exception ex)
-            {
-                Dispatcher.Invoke(() => AppendLog($"Error playing {soundFile}: {ex.Message}"));
-            }
-        }
-
-        private void ResetCooldown_Click(object sender, RoutedEventArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                foreach (var cooldown in _cooldowns)
-                {
-                    if (cooldown.Value.Timer.IsEnabled)
-                    {
-                        cooldown.Value.Timer.Stop();
-                    }
-                    cooldown.Value.RemainingSeconds = 0;
-                    cooldown.Value.Display.Text = cooldown.Value.InitialText;
-                    cooldown.Value.Display.Background = new SolidColorBrush(Colors.LightGreen);
-                    cooldown.Value.Display.Foreground = new SolidColorBrush(Colors.Black);
-                    AppendLog($"Reset cooldown for {cooldown.Key}.");
-                }
-            });
-        }
-
-        private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            // Gán phím số 1-5 cho các hành động
-            if (e.Key == System.Windows.Input.Key.D1)
-            {
-                LockPick_Click(sender, new RoutedEventArgs());
-            }
-            else if (e.Key == System.Windows.Input.Key.D2)
-            {
-                GlassCutting_Click(sender, new RoutedEventArgs());
-            }
-            else if (e.Key == System.Windows.Input.Key.D3)
-            {
-                AutoATM_Click(sender, new RoutedEventArgs());
-            }
-            else if (e.Key == System.Windows.Input.Key.D4)
-            {
-                Crowbar_Click(sender, new RoutedEventArgs());
-            }
-            else if (e.Key == System.Windows.Input.Key.D5)
-            {
-                RobBank_Click(sender, new RoutedEventArgs());
-            }
-            // Gán phím Esc cho Exit
-            else if (e.Key == System.Windows.Input.Key.Escape)
-            {
-                Exit_Click(sender, new RoutedEventArgs());
-            }
+            };
+            if (string.IsNullOrEmpty(path)) return;
+            path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", path);
+            if (!File.Exists(path)) return;
+            try { using var p = new SoundPlayer(path); p.Play(); }
+            catch (Exception ex) { AppendLog($"Error playing sound: {ex.Message}"); }
         }
     }
 }

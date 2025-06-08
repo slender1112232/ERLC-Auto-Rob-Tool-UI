@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading;
 
 namespace ELRCRobTool.Robberies;
@@ -45,6 +45,8 @@ public class Crowbar
             }
         }
 
-        Logger.WriteLine("i ~ Robbing Finished!");
+        // Thêm vào cuối StartProcess
+        Screen.ReleaseDC();
+        Logger.WriteLine("i ~ Robbing Finished and DC released!");
     }
 }
