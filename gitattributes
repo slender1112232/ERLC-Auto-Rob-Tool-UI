@@ -1,0 +1,20 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly declare text files we want to normalize
+*.cs     text
+*.xaml   text
+*.config text
+*.csproj text
+*.sln    text
+*.md     text
+
+# Binary files
+*.png    binary
+*.jpg    binary
+*.exe    binary
+*.dll    binary
+*.pdb    binary
+
+# Linguist override (optional)
+*.cs linguist-language=C#
