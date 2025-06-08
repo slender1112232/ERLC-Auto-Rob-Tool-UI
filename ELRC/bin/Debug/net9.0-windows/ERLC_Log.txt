@@ -90,3 +90,150 @@
 [2025-06-09 02:25:21] LockPick completed.
 [2025-06-09 02:30:27] Waiting for Roblox to open...
 [2025-06-09 02:30:30] Roblox is running!
+[2025-06-09 02:35:34] i ~ Starting process in 1
+[2025-06-09 02:35:35] i ~ New DC acquired.
+[2025-06-09 02:35:35] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 02:35:35] Error: Parameter is not valid.
+[2025-06-09 02:35:41] Stopping current action...
+[2025-06-09 02:35:43] i ~ Starting process in 1
+[2025-06-09 02:35:45] i ~ Could not find square after 25 attempts, minigame done.
+[2025-06-09 02:35:45] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 02:35:45] i ~ Releasing DC...
+[2025-06-09 02:35:45] i ~ DC released.
+[2025-06-09 02:35:45] GlassCutting completed.
+[2025-06-09 02:35:46] All cooldowns reset.
+[2025-06-09 02:35:47] Stopping current action...
+[2025-06-09 02:35:48] i ~ Starting process in 1
+[2025-06-09 02:35:50] i ~ Starting process in 1
+[2025-06-09 02:35:52] i ~ New DC acquired.
+[2025-06-09 02:35:54] ! ~ LockPicking line could not be found!
+[2025-06-09 02:35:54] LockPick completed.
+[2025-06-09 02:36:03] i ~ Could not find square after 25 attempts, minigame done.
+[2025-06-09 02:36:03] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 02:36:03] i ~ Releasing DC...
+[2025-06-09 02:36:03] i ~ DC released.
+[2025-06-09 02:36:03] GlassCutting completed.
+[2025-06-09 02:42:58] Waiting for Roblox to open...
+[2025-06-09 02:43:00] Roblox is running!
+[2025-06-09 02:44:20] i ~ New DC acquired.
+[2025-06-09 02:44:20] i ~ Starting process in 1
+[2025-06-09 02:44:32] i ~ Roblox lost focus, stopping GlassCutting...
+[2025-06-09 02:44:32] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 02:44:32] i ~ Releasing DC...
+[2025-06-09 02:44:32] i ~ DC released.
+[2025-06-09 02:44:32] GlassCutting completed.
+[2025-06-09 02:47:53] i ~ Starting process in 1
+[2025-06-09 02:47:59] i ~ New DC acquired.
+[2025-06-09 02:47:59] i ~ Found Line at 675, 540
+[2025-06-09 02:47:59] i ~ Moved to bar 1 at 758, 540
+[2025-06-09 02:47:59] i ~ Clicked bar 1
+[2025-06-09 02:47:59] i ~ Moved to bar 2 at 841, 540
+[2025-06-09 02:48:00] i ~ Clicked bar 2
+[2025-06-09 02:48:01] i ~ Moved to bar 3 at 924, 540
+[2025-06-09 02:48:01] i ~ Clicked bar 3
+[2025-06-09 02:48:01] i ~ Moved to bar 4 at 1007, 540
+[2025-06-09 02:48:07] i ~ Clicked bar 4
+[2025-06-09 02:48:07] i ~ Moved to bar 5 at 1090, 540
+[2025-06-09 02:48:07] i ~ Clicked bar 5
+[2025-06-09 02:48:07] i ~ Moved to bar 6 at 1173, 540
+[2025-06-09 02:48:07] i ~ Clicked bar 6
+[2025-06-09 02:48:07] i ~ Releasing DC...
+[2025-06-09 02:48:07] i ~ DC released.
+[2025-06-09 02:48:07] i ~ Robbing Finished and DC released!
+[2025-06-09 02:48:07] LockPick completed.
+[2025-06-09 02:53:10] Waiting for Roblox to open...
+[2025-06-09 02:53:12] Roblox is running!
+[2025-06-09 02:54:29] i ~ New DC acquired.
+[2025-06-09 02:54:29] i ~ Starting process in 1
+[2025-06-09 02:54:42] i ~ Could not find square after 25 attempts, minigame done.
+[2025-06-09 02:54:42] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 02:54:42] i ~ Releasing DC...
+[2025-06-09 02:54:42] i ~ DC released.
+[2025-06-09 02:54:42] GlassCutting completed.
+[2025-06-09 02:55:38] i ~ New DC acquired.
+[2025-06-09 02:55:38] i ~ Starting process in 2
+[2025-06-09 02:55:41] i ~ Color to detect: 255,85,238
+[2025-06-09 02:55:42] i ~ Clicked...
+[2025-06-09 02:55:42] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:42] i ~ Color to detect: 85,255,128
+[2025-06-09 02:55:43] i ~ Clicked...
+[2025-06-09 02:55:43] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:44] i ~ Color to detect: 255,85,110
+[2025-06-09 02:55:45] i ~ Clicked...
+[2025-06-09 02:55:45] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:46] i ~ Color to detect: 145,85,255
+[2025-06-09 02:55:48] i ~ Clicked...
+[2025-06-09 02:55:48] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:49] i ~ Color to detect: 255,85,85
+[2025-06-09 02:55:49] i ~ Clicked...
+[2025-06-09 02:55:49] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:49] i ~ Color to detect: 30,30,30
+[2025-06-09 02:55:50] i ~ Clicked...
+[2025-06-09 02:55:50] i ~ Switching to new color in 0.5 s...
+[2025-06-09 02:55:51] ! ~ Could not find ATM Firewall's Frame!
+[2025-06-09 02:55:51] i ~ Releasing DC...
+[2025-06-09 02:55:51] i ~ DC released.
+[2025-06-09 02:55:51] i ~ Robbing Finished and DC released!
+[2025-06-09 02:55:51] AutoATM completed.
+[2025-06-09 02:56:44] i ~ New DC acquired.
+[2025-06-09 02:56:44] i ~ Starting process in 1
+[2025-06-09 02:56:50] i ~ Found Line at 675, 540
+[2025-06-09 02:56:50] i ~ Moved to bar 1 at 758, 540
+[2025-06-09 02:56:50] i ~ Clicked bar 1
+[2025-06-09 02:56:50] i ~ Moved to bar 2 at 841, 540
+[2025-06-09 02:56:51] i ~ Clicked bar 2
+[2025-06-09 02:56:51] i ~ Moved to bar 3 at 924, 540
+[2025-06-09 02:56:51] i ~ Clicked bar 3
+[2025-06-09 02:56:51] i ~ Moved to bar 4 at 1007, 540
+[2025-06-09 02:56:51] i ~ Clicked bar 4
+[2025-06-09 02:56:51] i ~ Moved to bar 5 at 1090, 540
+[2025-06-09 02:56:51] i ~ Clicked bar 5
+[2025-06-09 02:56:51] i ~ Moved to bar 6 at 1173, 540
+[2025-06-09 02:56:51] i ~ Clicked bar 6
+[2025-06-09 02:56:51] i ~ Releasing DC...
+[2025-06-09 02:56:51] i ~ DC released.
+[2025-06-09 02:56:51] i ~ Robbing Finished and DC released!
+[2025-06-09 02:56:51] LockPick completed.
+[2025-06-09 02:57:43] i ~ New DC acquired.
+[2025-06-09 02:57:43] i ~ Starting process in 1
+[2025-06-09 02:57:48] i ~ Found Line at 675, 540
+[2025-06-09 02:57:48] i ~ Moved to bar 1 at 758, 540
+[2025-06-09 02:57:49] i ~ Clicked bar 1
+[2025-06-09 02:57:49] i ~ Moved to bar 2 at 841, 540
+[2025-06-09 02:57:49] i ~ Clicked bar 2
+[2025-06-09 02:57:49] i ~ Moved to bar 3 at 924, 540
+[2025-06-09 02:57:50] i ~ Clicked bar 3
+[2025-06-09 02:57:50] i ~ Moved to bar 4 at 1007, 540
+[2025-06-09 02:57:50] i ~ Clicked bar 4
+[2025-06-09 02:57:50] i ~ Moved to bar 5 at 1090, 540
+[2025-06-09 02:57:51] i ~ Clicked bar 5
+[2025-06-09 02:57:51] i ~ Moved to bar 6 at 1173, 540
+[2025-06-09 02:57:51] i ~ Clicked bar 6
+[2025-06-09 02:57:52] i ~ Releasing DC...
+[2025-06-09 02:57:52] i ~ DC released.
+[2025-06-09 02:57:52] i ~ Robbing Finished and DC released!
+[2025-06-09 02:57:52] LockPick completed.
+[2025-06-09 03:03:42] i ~ New DC acquired.
+[2025-06-09 03:03:42] i ~ Starting process in 1
+[2025-06-09 03:03:43] ! ~ Could not find Crowbar green line!
+[2025-06-09 03:03:43] i ~ Releasing DC...
+[2025-06-09 03:03:43] i ~ DC released.
+[2025-06-09 03:03:43] i ~ Robbing Finished and DC released!
+[2025-06-09 03:03:43] Crowbar completed.
+[2025-06-09 03:03:45] i ~ New DC acquired.
+[2025-06-09 03:03:45] i ~ Starting process in 2
+[2025-06-09 03:03:47] ! ~ Could not find ATM Firewall's Frame!
+[2025-06-09 03:03:47] AutoATM completed.
+[2025-06-09 03:03:48] Robbing Bank (simulated)...
+[2025-06-09 03:03:48] RobBank completed.
+[2025-06-09 03:03:50] i ~ Starting process in 1
+[2025-06-09 03:03:51] i ~ Roblox lost focus, stopping GlassCutting...
+[2025-06-09 03:03:51] i ~ GlassCutting stopped, mouse fixed at center and DC released!
+[2025-06-09 03:03:51] i ~ Releasing DC...
+[2025-06-09 03:03:51] i ~ DC released.
+[2025-06-09 03:03:51] GlassCutting completed.
+[2025-06-09 03:03:55] i ~ New DC acquired.
+[2025-06-09 03:03:55] i ~ Starting process in 1
+[2025-06-09 03:04:01] ! ~ LockPicking line could not be found!
+[2025-06-09 03:04:01] LockPick completed.
+[2025-06-09 03:05:09] Waiting for Roblox to open...

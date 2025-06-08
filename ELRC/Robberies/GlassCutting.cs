@@ -15,6 +15,7 @@ namespace ELRCRobTool.Robberies
 
         public static void StartProcess()
         {
+            Screen.Init();
             Logger.WriteLine($"i ~ Starting process in {StartTime}");
             Roblox.FocusRoblox();
 

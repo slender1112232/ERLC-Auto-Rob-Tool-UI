@@ -14,6 +14,8 @@ namespace ELRCRobTool
 
         public static int ScreenWidth;
         public static int ScreenHeight;
+        // thêm vào class Screen (public):
+        public static void Init() => EnsureDC();   // gọi 1 lần ở mọi minigame
 
         [DllImport("user32.dll")]
         static extern IntPtr GetDC(IntPtr hwnd);

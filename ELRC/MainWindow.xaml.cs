@@ -120,13 +120,13 @@ namespace ELRCRobTool
             // ➜ Không block khi cooldown chạy, nhưng reset countdown về lại sau khi action kết thúc.
             if (cdDisplay != null && _cooldowns.TryGetValue(name, out var cdRunning) && cdRunning.Timer.IsEnabled)
             {
-                // thông báo nhưng vẫn cho chạy tiếp
-                cdRunning.Timer.Stop(); // dừng đếm hiện tại để reset sau
+                cdRunning.Timer.Stop(); // dừng cooldown hiện tại
                 cdRunning.RemainingSeconds = 0;
                 cdDisplay.Text = "Running...";
                 cdDisplay.Background = Brushes.Orange;
                 cdDisplay.Foreground = Brushes.Black;
             }
+
 
             if (name != "GlassCutting") Program.SetStopAction(false);
 
