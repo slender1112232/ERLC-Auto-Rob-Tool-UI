@@ -1,4 +1,4 @@
-# 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
+![image](https://github.com/user-attachments/assets/6fbbaaba-7ac5-48ca-a084-36bf13d4cfc2)# 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
 
 A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool), now with a full UI, cooldown tracking, hotkeys, and quality-of-life improvements.
 
@@ -7,7 +7,8 @@ A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://git
 ## 📸 Screenshot
 
 *(Bạn có thể thêm ảnh screenshot ở đây nếu muốn)*  
-`![Screenshot](./screenshot.png)`
+![image](https://github.com/user-attachments/assets/c073794c-4e04-461e-9ad5-f17c87ef0eb3)
+
 
 ---
 
