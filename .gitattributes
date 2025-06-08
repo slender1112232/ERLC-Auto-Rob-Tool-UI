@@ -1,2 +1,28 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated\ Files/
+
+# VS Code
+.vscode/
+
+# Other
+*.log
+*.pdb
+*.cache
+*.db
+*.exe
+*.dll
+*.nupkg
+
+# OS junk
+.DS_Store
+Thumbs.db

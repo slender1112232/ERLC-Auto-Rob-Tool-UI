@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <ApplicationIcon>ERLClogo.ico</ApplicationIcon>
+		
+    </PropertyGroup>
+    <ItemGroup>
+      <Content Include="ERLClogo.ico" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+        <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+		
+	</ItemGroup>
+</Project>
