@@ -1,47 +1,50 @@
-# 🤖 ERLC Auto-Rob Tool (Modified) 🛠️
+# 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
 
-A customized version of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool)  
-> Designed to automate minigames in **Emergency Response: Liberty County (ER:LC)** — with some tweaks and enhancements.
+A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool), now with a full UI, cooldown tracking, hotkeys, and quality-of-life improvements.
 
 ---
 
 ## 📸 Screenshot
 
-*(Bạn có thể thêm ảnh screenshot ở đây nếu muốn — ví dụ:)*  
+*(Bạn có thể thêm ảnh screenshot ở đây nếu muốn)*  
 `![Screenshot](./screenshot.png)`
 
 ---
 
 ## 🧩 Overview
 
-The **ERLC Auto-Rob Tool (Modified)** is a handy utility to automate the robbery-related minigames in ER:LC, including:
-
-- 🔓 Lockpicking  
-- 🏧 ATM Robberies  
-- 💎 Glass Cutting (Jewelry Store)
-
-This version was built based on the original tool by *IceMinisterq* with permission. The aim is to improve usability, UI, and possibly extend it with more mod-friendly features.
+This is a **community-driven** version of the ERLC Auto-Rob Tool, originally created by *IceMinisterq*.  
+Built with ❤️ using **.NET 9**, this version replaces the console interface with a more user-friendly UI, while introducing several new features focused on automation and game awareness.
 
 ---
 
-## ✨ Features
+## ✨ What's New (Fan-Made Improvements)
 
-- 🚀 **Automated Minigames**  
-  Automates lockpicking, ATM robbing, and jewelry glass cutting
+- 🖼️ **New UI**: Switched from console to a modern Windows interface
+- ⏳ **Cooldown Timers**: Tracks cooldowns for ATM, bank, and glass cutting minigames
+- 🎮 **Hotkeys**: Quickly trigger robbery actions via keyboard shortcuts
+- 🎤 **Voice Notifications**: Clear in-game status alerts (now fully in English)
+- 🛑 **Focus-Aware Glass Cutting**: Automatically stops glass cutting if Roblox loses focus
+- 🔄 **Cooldown Reset Button**: Manual reset for cooldown timers
+- ✅ **Improved Text & Bug Fixes**: Fixed incorrect cooldown text and more
 
-- ⚙️ **Simple Interface**  
-  Open the app, select your minigame, and let it handle the rest
+---
 
-- 🕒 **Time Saver**  
-  No more struggling with repetitive timing-based minigames
+## 🔧 Features (Original + Enhanced)
+
+- 🚀 Automates lockpicking, ATM robbing, and jewelry glass cutting
+- 🎯 Hotkey shortcuts for faster control
+- 🕒 Cooldown awareness with UI timers
+- 🗣️ Voice alerts when cooldown ends or errors occur
+- ⚙️ Simple and intuitive interface
 
 ---
 
 ## 🛠 Requirements
 
-- A working Windows PC  
-- **HDR mode disabled** (to avoid screen capture issues)  
-- [.NET 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- A Windows PC  
+- **HDR mode disabled** (important for correct screen detection)  
+- [.NET 9 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ---
 
@@ -49,28 +52,29 @@ This version was built based on the original tool by *IceMinisterq* with permiss
 
 1. Download the latest release from the [Releases](../../releases) tab  
 2. Extract and run the `.exe` file  
-3. Select one of the minigame options  
-4. Watch it work automatically 🚀
+3. Choose a minigame or use hotkeys  
+4. Cooldowns will auto-track, and the app will handle the minigames for you!
 
 ---
 
 ## ⚠️ Disclaimer
 
-> Use this tool at your own risk and **in accordance with ER:LC’s terms of service**.  
-> The developer of this version is **not responsible** for any consequences from misuse or abuse of the tool.
+> This is a **fan-made modification**. Use it at your own risk and ensure it complies with ER:LC’s terms of service.  
+> I do not claim ownership of the original codebase. All credit to [IceMinisterq](https://github.com/IceMinisterq) for the base tool.  
+> I am not responsible for any misuse or game-related consequences.
 
 ---
 
 ## 🤝 Contributions
 
-Feel free to fork, open issues, or make pull requests.  
-Any improvement, feature request, or bug report is welcome!
+Suggestions, ideas, or bug reports are very welcome!  
+Feel free to fork the repo or open issues if you'd like to help improve this version.
 
 ---
 
 ## 📄 License
 
 This project is licensed under the **GNU General Public License v3.0**  
-See the [LICENSE](./LICENSE) file for details.
+See the [LICENSE](./LICENSE) file for more information.
 
-> Credit to the original developer: [IceMinisterq](https://github.com/IceMinisterq)
+> Original repository: [IceMinisterq / ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool)
