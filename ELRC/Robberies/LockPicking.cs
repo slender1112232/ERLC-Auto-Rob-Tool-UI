@@ -5,12 +5,11 @@ namespace ELRCRobTool.Robberies;
 public class LockPicking
 {
     private const int StartTime = 1;
-    private const int SpamClickCount = 5;
 
     private static readonly Color LineColor = ColorTranslator.FromHtml("#FFC903");
     private static readonly int[] yOffsets = { -6, -4, -2, 0, 2, 4, 6, 8 }; // dải Y quét
     private const int whiteThr = 120;       // ngưỡng “trắng”
-    private const int postClickWait = 85;        // ms nghỉ sau click
+    private const int postClickWait = 83;        // ms nghỉ sau click
 
 
     private static bool IsWhite(Color c) =>
@@ -42,10 +41,20 @@ public class LockPicking
     /* ------------- main ------------- */
     public static void StartProcess()
     {
-        Screen.Init();
+        
+        if (!Roblox.IsRobloxRunning())
+        {
+            Logger.WriteLine("! ~ Roblox is not running, cannot start LockPicking!");
+            return;
+        }
         Logger.WriteLine($"i ~ Starting process in {StartTime}");
         Roblox.FocusRoblox();
         Thread.Sleep(StartTime * 5000);
+        Screen.ReleaseDC();
+        Screen.Init();
+        
+        
+        
         int barOffset = (int)Math.Floor(83 * Screen.SystemScaleMultiplier);
 
         var (lineX, lineY) = Screen.LocateColor(LineColor, 0);
