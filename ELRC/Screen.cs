@@ -30,11 +30,22 @@ namespace ELRCRobTool
         [DllImport("gdi32.dll")]
         static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
 
+        // Reuse DC
+        private static readonly IntPtr SharedDC;
+
         static Screen()
         {
-            IntPtr desktopDc = GetDC(GetDesktopWindow());
+            SharedDC = GetDC(IntPtr.Zero);
+            IntPtr desktopDc = SharedDC;
+
             ScreenWidth = GetDeviceCaps(desktopDc, DesktopHorzres);
             ScreenHeight = GetDeviceCaps(desktopDc, DesktopVertres);
+
+            AppDomain.CurrentDomain.ProcessExit += (_, __) =>
+            {
+                if (SharedDC != IntPtr.Zero)
+                    ReleaseDC(IntPtr.Zero, SharedDC);
+            };
         }
 
         public static Bitmap TakeScreenshot()
@@ -132,16 +143,13 @@ namespace ELRCRobTool
             return (0, 0);
         }
 
-        public static Color GetColorAtPixel(int x, int y)
+        public static Color GetColorAtPixelFast(int x, int y)
         {
-            IntPtr hdc = GetDC(IntPtr.Zero);
-            uint pixel = GetPixel(hdc, x, y);
-            ReleaseDC(IntPtr.Zero, hdc);
+            uint pixel = GetPixel(SharedDC, x, y);
             return Color.FromArgb(255,
                 (int)(pixel & 0xFF),
-                (int)((pixel & 0xFF00) >> 8),
-                (int)((pixel & 0xFF0000) >> 16)
-            );
+                (int)((pixel >> 8) & 0xFF),
+                (int)((pixel >> 16) & 0xFF));
         }
 
         public static bool AreColorsClose(Color color1, Color color2, int maxDiff)
@@ -178,6 +186,6 @@ namespace ELRCRobTool
             return 1;
         }
 
-        public static double SystemScaleMultiplier = Screen.GetScale();
+        public static double SystemScaleMultiplier = GetScale();
     }
 }

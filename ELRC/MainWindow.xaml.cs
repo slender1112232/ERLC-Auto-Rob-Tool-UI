@@ -34,6 +34,16 @@ namespace ELRCRobTool
 
             // Thêm sự kiện KeyDown để xử lý hotkey
             KeyDown += MainWindow_KeyDown;
+
+            // Đăng ký event từ Logger để cập nhật LogTextBox
+            Logger.OnLogMessage += message =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    LogTextBox.AppendText(message + "\n");
+                    LogTextBox.ScrollToEnd();
+                });
+            };
         }
 
         public string SystemScaleMultiplier => Screen.SystemScaleMultiplier.ToString("F2");
@@ -59,6 +69,8 @@ namespace ELRCRobTool
             _cooldowns["AutoATM"] = new CooldownInfo { Display = AutoATMCooldown };
             _cooldowns["RobBank"] = new CooldownInfo { Display = RobBankCooldown };
             _cooldowns["GlassCutting"] = new CooldownInfo { Display = GlassCuttingCooldown };
+            _cooldowns["LockPick"] = new CooldownInfo { Display = LockPickCooldown };
+
 
             foreach (var cooldown in _cooldowns.Values)
             {
@@ -148,13 +160,12 @@ namespace ELRCRobTool
         private void AppendLog(string message)
         {
             Logger.WriteLine(message);
-            Dispatcher.Invoke(() => LogTextBox.AppendText($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\n"));
-            LogTextBox.ScrollToEnd();
         }
 
         private void LockPick_Click(object sender, RoutedEventArgs e)
         {
-            StartAction(() => LockPicking.StartProcess(), "LockPick");
+            StartAction(() => LockPicking.StartProcess(), "LockPick", 240, LockPickCooldown);
+
         }
 
         private void GlassCutting_Click(object sender, RoutedEventArgs e)
@@ -177,7 +188,7 @@ namespace ELRCRobTool
             StartAction(() =>
             {
                 Dispatcher.Invoke(() => AppendLog("Robbing Bank (simulated action)..."));
-            }, "RobBank", 420, RobBankCooldown);
+            }, "RobBank", 240, RobBankCooldown);
         }
 
         private void Stop_Click(object sender, RoutedEventArgs e)
@@ -215,11 +226,6 @@ namespace ELRCRobTool
             }
         }
 
-        private TextBlock? GetCooldownDisplay(string actionName)
-        {
-            return _cooldowns.TryGetValue(actionName, out var cooldown) ? cooldown.Display : null;
-        }
-
         private void PlaySound(string actionName)
         {
             string soundFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", actionName switch
@@ -227,7 +233,8 @@ namespace ELRCRobTool
                 "RobBank" => "Banks.wav",
                 "AutoATM" => "ATM.wav",
                 "GlassCutting" => "GlassCutting.wav",
-                _ => "ATM.wav"
+                "LockPick" => "LockPick.wav",
+                _ => "Default.wav"
             });
             try
             {
@@ -241,6 +248,7 @@ namespace ELRCRobTool
                 Dispatcher.Invoke(() => AppendLog($"Error playing {soundFile}: {ex.Message}"));
             }
         }
+
         private void ResetCooldown_Click(object sender, RoutedEventArgs e)
         {
             Dispatcher.Invoke(() =>
@@ -259,6 +267,7 @@ namespace ELRCRobTool
                 }
             });
         }
+
         private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             // Gán phím số 1-5 cho các hành động
@@ -289,6 +298,4 @@ namespace ELRCRobTool
             }
         }
     }
-
 }
-

@@ -99,9 +99,10 @@
                 </StackPanel>
             </Button>
             <!-- Cooldown Displays -->
-            <TextBlock x:Name="AutoATMCooldown" Grid.Row="4" Grid.Column="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="AutoATM: Ready" Background="LightGreen" Foreground="Black"/>
-            <TextBlock x:Name="RobBankCooldown" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="RobBank: Ready" Background="LightGreen" Foreground="Black"/>
-            <TextBlock x:Name="GlassCuttingCooldown" Grid.Row="5" Grid.Column="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="GlassCutting: Ready" Background="LightGreen" Foreground="Black"/>
+            <TextBlock x:Name="LockPickCooldown" Grid.Row="4" Grid.Column="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="LockPick: Ready" Background="LightGreen" Foreground="Black"/>
+            <TextBlock x:Name="AutoATMCooldown" Grid.Row="5" Grid.Column="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="AutoATM: Ready" Background="LightGreen" Foreground="Black"/>
+            <TextBlock x:Name="RobBankCooldown" Grid.Row="5" Grid.Column="1" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="RobBank: Ready" Background="LightGreen" Foreground="Black"/>
+            <TextBlock x:Name="GlassCuttingCooldown" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="GlassCutting: Ready" Background="LightGreen" Foreground="Black"/>
         </Grid>
         <!-- Log Area -->
         <materialDesign:Card Grid.Row="2" Padding="10" Background="#FFFFFFFF" materialDesign:ElevationAssist.Elevation="Dp1">

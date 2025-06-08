@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SReIj5hoxVE=",
+  "dgSpecHash": "TizAstM1yQg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Downloads\\ELRCRobToolMain2\\ELRCRobToolMain\\ELRCRobTool\\ELRCRobTool.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\ELRCRobTool.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\materialdesignthemes\\5.2.1\\materialdesignthemes.5.2.1.nupkg.sha512",

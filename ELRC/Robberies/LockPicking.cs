@@ -1,70 +1,87 @@
-using System.Drawing;
+﻿using System.Drawing;
+using System.Threading;
 
 namespace ELRCRobTool.Robberies;
 public class LockPicking
 {
     private const int StartTime = 1;
     private const int SpamClickCount = 5;
-    private static Color LineColor = ColorTranslator.FromHtml("#FFC903");
 
+    private static readonly Color LineColor = ColorTranslator.FromHtml("#FFC903");
+    private static readonly int[] yOffsets = { -6, -4, -2, 0, 2, 4, 6, 8 }; // dải Y quét
+    private const int whiteThr = 120;       // ngưỡng “trắng”
+    private const int postClickWait = 85;        // ms nghỉ sau click
+
+    /* ------------- helper ------------- */
     private static void SpamClickToFail(int x, int y)
     {
-        Console.WriteLine("i ~ Spamming clicks to fail minigame...");
+        Logger.WriteLine("i ~ Spamming clicks to fail minigame...");
         for (int i = 0; i < SpamClickCount; i++)
         {
             Mouse.SetMousePos(x, y);
             Mouse.LeftClick();
             Thread.Sleep(50);
         }
-        Console.WriteLine("i ~ Spam complete, minigame should fail now!");
+        Logger.WriteLine("i ~ Spam complete, minigame should fail now!");
     }
 
+    private static bool IsWhite(Color c) =>
+        c.R > whiteThr && c.G > whiteThr && c.B > whiteThr;
+
+    private static bool WaitAndClick(int barIdx, int x, int lineY)
+    {
+        while (true)
+        {
+            if (Program.ShouldStop())
+            {
+                SpamClickToFail(x, lineY);
+                return false;
+            }
+
+            bool hit = false;
+            foreach (int dy in yOffsets)
+            {
+                Color pix = Screen.GetColorAtPixelFast(x + 5, lineY + dy);
+                if (IsWhite(pix)) { hit = true; break; }
+            }
+
+            if (hit)
+            {
+                Mouse.LeftClick();
+                Logger.WriteLine($"i ~ Clicked bar {barIdx}");
+                Thread.Sleep(postClickWait);
+                return true;
+            }
+
+            Thread.Sleep(1);          // poll ~1 kHz
+        }
+    }
+
+    /* ------------- main ------------- */
     public static void StartProcess()
     {
-        Console.WriteLine($"i ~ Starting process in {StartTime}");
+        
+        Logger.WriteLine($"i ~ Starting process in {StartTime}");
         Roblox.FocusRoblox();
+        Thread.Sleep(StartTime * 5000);
+        int barOffset = (int)Math.Floor(83 * Screen.SystemScaleMultiplier);
 
-        Thread.Sleep(StartTime * 1000);
-
-        int barSizeOffset = (int)Math.Floor(83 * Screen.SystemScaleMultiplier);
-
-        var (linePosX, linePosY) = Screen.LocateColor(LineColor, 0);
-        if (linePosX == 0 && linePosY == 0)
+        var (lineX, lineY) = Screen.LocateColor(LineColor, 0);
+        if (lineX == 0)
         {
-            Console.WriteLine("! ~ LockPicking line could not be found!");
+            Logger.WriteLine("! ~ LockPicking line could not be found!");
             return;
         }
-
-        Console.WriteLine($"i ~ Found Line at {linePosX}, {linePosY}");
-
-        for (int rectI = 1; rectI < 7; rectI++)
+        Logger.WriteLine($"i ~ Found Line at {lineX}, {lineY}");
+        
+        for (int bar = 1; bar <= 6; bar++)
         {
-            int x = linePosX + (barSizeOffset * rectI);
-            while (true)
-            {
-                if (Program.ShouldStop())
-                {
-                    SpamClickToFail(x, linePosY);
-                    return;
-                }
-
-                Color color1 = Screen.GetColorAtPixel(x, linePosY + 10);
-                Color color2 = Screen.GetColorAtPixel(x, linePosY - 4);
-
-                if (
-                    color1.R > 140 & color1.G > 140 & color1.B > 140 &&
-                    color2.R > 140 & color2.G > 140 & color2.B > 140
-                )
-                {
-                    Mouse.LeftClick();
-                    Mouse.SetMousePos(x, linePosY);
-                    Console.WriteLine("Switching to next bar");
-                    Thread.Sleep(110);
-                    break;
-                }
-            }
+            int x = lineX + barOffset * bar;
+            Mouse.SetMousePos(x, lineY);
+            Logger.WriteLine($"i ~ Moved to bar {bar} at {x}, {lineY}");
+            if (!WaitAndClick(bar, x, lineY)) return;   // dừng nếu Ctrl+C
         }
 
-        Console.WriteLine("i ~ Robbing Finished!");
+        Logger.WriteLine("i ~ Robbing Finished!");
     }
 }
