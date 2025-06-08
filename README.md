@@ -18,7 +18,8 @@ A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://git
 
 
 ## 📸 Screenshot
-![image](https://github.com/user-attachments/assets/c073794c-4e04-461e-9ad5-f17c87ef0eb3)
+![image](https://github.com/user-attachments/assets/22b17b43-09b0-4f9c-aa20-ab945ee3e814)
+
 
 
 ---
