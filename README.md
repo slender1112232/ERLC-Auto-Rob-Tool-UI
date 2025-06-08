@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6fbbaaba-7ac5-48ca-a084-36bf13d4cfc2)# 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
+# 🤖 ERLC Auto-Rob Tool (Fan-Made UI Version) 🛠️
 
 A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool), now with a full UI, cooldown tracking, hotkeys, and quality-of-life improvements.
 
