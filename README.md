@@ -6,10 +6,10 @@ See the full changelog [here](./CHANGELOG.md).
 
 > ⚠️ **IMPORTANT: Start This Tool *Before* Launching Roblox!**
 
-Due to how this tool captures your screen and initializes device contexts (DC) for fast pixel reading, it must be started **before** Roblox is opened.  
-If you open Roblox first, the screen capture may become inaccurate or fail to locate in-game elements properly, especially in fast-paced minigames like LockPicking or GlassCutting.
+> Due to how this tool captures your screen and initializes device contexts (DC) for fast pixel reading, it must be started **before** Roblox is opened.  
+> If you open Roblox first, the screen capture may become inaccurate or fail to locate in-game elements properly, especially in fast-paced minigames like LockPicking or GlassCutting.
 
-**Always run the tool first to ensure stable performance and accurate color detection.**
+> **Always run the tool first to ensure stable performance and accurate color detection.**
 
 
 ---
