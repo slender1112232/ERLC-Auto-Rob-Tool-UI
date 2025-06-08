@@ -4,10 +4,10 @@
 
 See the full changelog [here](./CHANGELOG.md).
 
-
+---
 A **fan-made enhanced version** of the original [ERLC Auto-Rob Tool](https://github.com/IceMinisterq/ERLC-Auto-Rob-Tool), now with a full UI, cooldown tracking, hotkeys, and quality-of-life improvements.
 
----
+
 
 ## 📸 Screenshot
 ![image](https://github.com/user-attachments/assets/c073794c-4e04-461e-9ad5-f17c87ef0eb3)
