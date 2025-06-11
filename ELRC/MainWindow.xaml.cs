@@ -10,6 +10,8 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace ELRCRobTool
 {
@@ -31,7 +33,7 @@ namespace ELRCRobTool
             DataContext = this;
             CheckRoblox();
             SetupCooldowns();
-
+            CheckForUpdates();
             KeyDown += MainWindow_KeyDown;
 
             Logger.OnLogMessage += m => Dispatcher.Invoke(() =>
@@ -210,6 +212,70 @@ namespace ELRCRobTool
             if (!File.Exists(path)) return;
             try { using var p = new SoundPlayer(path); p.Play(); }
             catch (Exception ex) { AppendLog($"Error playing sound: {ex.Message}"); }
+        }
+        /* ─────────────────────────── Update Checker ─────────────────────────── */
+        private const string CurrentVersion = "2.1.0"; // Phiên bản hiện tại từ UI
+        private const string GitHubApiUrl = "https://api.github.com/repos/slender1112232/ERLC-Auto-Rob-Tool-UI/releases/latest";
+        private const string GitHubReleaseUrl = "https://github.com/slender1112232/ERLC-Auto-Rob-Tool-UI/releases/latest";
+
+        private async void CheckForUpdates()
+        {
+            try
+            {
+                string latestVersion = await GetLatestVersion();
+                if (IsNewerVersion(latestVersion, CurrentVersion))
+                {
+                    ShowUpdateDialog(latestVersion);
+                }
+                // Không hiển thị nếu CurrentVersion đã là mới nhất hoặc lớn hơn
+            }
+            catch (Exception ex)
+            {
+                AppendLog($"Lỗi kiểm tra cập nhật: {ex.Message}");
+            }
+        }
+
+        private async Task<string> GetLatestVersion()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", "ELRCRobTool"); // Yêu cầu User-Agent cho GitHub API
+                string json = await client.GetStringAsync(GitHubApiUrl);
+                JObject release = JObject.Parse(json);
+                return release["tag_name"]?.ToString().TrimStart('v') ?? CurrentVersion;
+            }
+        }
+
+        private bool IsNewerVersion(string latestVersion, string currentVersion)
+        {
+            try
+            {
+                Version latest = new Version(latestVersion);
+                Version current = new Version(currentVersion);
+                return latest > current;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void ShowUpdateDialog(string latestVersion)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    $"A new version ({latestVersion}) is available! Would you like to download it?",
+                    "ELRCRobTool Update",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Information);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Process.Start(new ProcessStartInfo(GitHubReleaseUrl) { UseShellExecute = true });
+                }
+                // Khi nhấn "No" hoặc "X", không làm gì cả, để lần sau vẫn kiểm tra
+            });
         }
     }
 }

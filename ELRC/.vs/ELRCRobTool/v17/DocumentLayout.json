@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|c:\\users\\administrator\\documents\\github\\erlc-auto-rob-tool-ui\\elrc\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|c:\\users\\administrator\\documents\\github\\erlc-auto-rob-tool-ui\\elrc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|c:\\users\\administrator\\documents\\github\\erlc-auto-rob-tool-ui\\elrc\\roblox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|solutionrelative:roblox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|c:\\users\\administrator\\documents\\github\\erlc-auto-rob-tool-ui\\elrc\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{29F1AA94-E066-3595-DCCD-64C144EACDA4}|ELRCRobTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Roblox.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\Roblox.cs",
+              "RelativeDocumentMoniker": "Roblox.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\Roblox.cs",
+              "RelativeToolTip": "Roblox.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T08:20:00.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAAMBAAAAAAAAAAAUwBgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T08:12:15.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T08:09:11.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-11T08:07:25.803Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

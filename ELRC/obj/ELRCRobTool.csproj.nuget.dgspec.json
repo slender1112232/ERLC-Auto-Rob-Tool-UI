@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\ELRCRobTool.csproj": {}
+    "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\ELRCRobTool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\ELRCRobTool.csproj": {
+    "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\ELRCRobTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\ELRCRobTool.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\ELRCRobTool.csproj",
         "projectName": "ELRCRobTool",
-        "projectPath": "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\ELRCRobTool.csproj",
+        "projectPath": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\ELRCRobTool.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Documents\\ELRCRobToolMain2\\ELRCRobTool\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\Documents\\GitHub\\ERLC-Auto-Rob-Tool-UI\\ELRC\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,6 +50,10 @@
               "target": "Package",
               "version": "[5.2.1, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[9.0.0, )"
@@ -78,7 +78,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

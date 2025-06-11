@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ELRCRobTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+538ed62b4acec5f9d8aceaa3fa1cdaf45385cb4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ELRCRobTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ELRCRobTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
