@@ -214,7 +214,7 @@ namespace ELRCRobTool
             catch (Exception ex) { AppendLog($"Error playing sound: {ex.Message}"); }
         }
         /* ─────────────────────────── Update Checker ─────────────────────────── */
-        private const string CurrentVersion = "2.1.0"; // Phiên bản hiện tại từ UI
+        private const string CurrentVersion = "2.1.1"; // Phiên bản hiện tại từ UI
         private const string GitHubApiUrl = "https://api.github.com/repos/slender1112232/ERLC-Auto-Rob-Tool-UI/releases/latest";
         private const string GitHubReleaseUrl = "https://github.com/slender1112232/ERLC-Auto-Rob-Tool-UI/releases/latest";
 
